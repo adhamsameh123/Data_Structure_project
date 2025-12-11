@@ -24,7 +24,7 @@ public:
 			return false;
 		}
 	}
-	void addBranch(int id, string name, string location) { //insert from front later i will make insert from end
+	void addBranch(int id, string name, string location) { 
 		Branch* newBranch = new Branch;
 		newBranch->id = id;
 		newBranch->name = name;
@@ -36,6 +36,17 @@ public:
 			newBranch->next = head;
 			head = newBranch;
 		}
+	}
+	void addBranchFromEnd(int id, string name, string location) { 
+		Branch* newBranch = new Branch;
+		newBranch->id = id;
+		newBranch->name = name;
+		newBranch->location = location;
+		Branch* temp = head;
+		while (temp->next != NULL) {
+			temp = temp->next;
+		}
+		temp->next = newBranch;
 	}
 	bool searchBranchById(int id) {
 		Branch* temp = head;
@@ -106,7 +117,7 @@ public:
 			return false;
 		}
 	}
-	void addDoctor(int id, string name, string Specialization, string hospitalBranch) { //insert from front later i will make insert from end
+	void addDoctor(int id, string name, string Specialization, string hospitalBranch) { 
 		Doctor* newDoctor = new Doctor;
 		newDoctor->id = id;
 		newDoctor->name = name;
@@ -119,6 +130,18 @@ public:
 			newDoctor->next = head;
 			head = newDoctor;
 		}
+	}
+	void addBranchFromEnd(int id, string name, string Specialization, string hospitalBranch) {
+		Doctor* newDoctor = new Doctor;
+		newDoctor->id = id;
+		newDoctor->name = name;
+		newDoctor->Specialization = Specialization;
+		newDoctor->hospitalBranch = hospitalBranch;
+		Doctor* temp = head;
+		while (temp->next != NULL) {
+			temp = temp->next;
+		}
+		temp->next = newDoctor;
 	}
 	bool searchDoctorById(int id) {
 		Doctor* temp = head;
@@ -194,6 +217,18 @@ public:
 			newPatient->next = head;
 			head = newPatient;
 		}
+	}
+	void addBranchFromEnd(int id, string name, string address, string appointment) {
+		Patient* newPatient = new Patient;
+		newPatient->id = id;
+		newPatient->name = name;
+		newPatient->address = address;
+		newPatient->appointment = appointment;
+		Patient* temp = head;
+		while (temp->next != NULL) {
+			temp = temp->next;
+		}
+		temp->next = newPatient;
 	}
 	bool searchPatientById(int id) {
 		Patient* temp = head;
