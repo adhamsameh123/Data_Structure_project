@@ -2,7 +2,7 @@
 using namespace std;
 class Branch {
 public:
-	int id;//عاوز احسنه اخلي المستخدم ميدخلوش 
+	int id;
 	string name;
 	string location;
 	Branch* next;
@@ -50,6 +50,12 @@ public:
 	}
 	bool searchBranchById(int id) {
 		Branch* temp = head;
+		//if the patient was the first and only node in list
+		if (temp->id == id) {
+			cout << "Branch was found";
+			cout << "it's name is:" << temp->name << "it's address is:" << temp->location;
+			return true;
+		}
 		while (temp->next != NULL) {
 			if (temp->id == id) {
 				cout << "Branch was found";
@@ -57,6 +63,12 @@ public:
 				return true;
 			}
 			temp = temp->next;
+		}
+		//check if patient in the last node
+		if (temp->id == id) {
+			cout << "Branch was found";
+			cout << "it's name is:" << temp->name << "it's address is:" << temp->location;
+			return true;
 		}
 		cout << "location was not found";
 		return false;
@@ -93,7 +105,7 @@ public:
 };
 class Doctor {
 public:
-	int id;//عاوز احسنه اخلي المستخدم ميدخلوش 
+	int id;
 	string name;
 	string Specialization;
 	string hospitalBranch; // مش عارف دي صح ولا لا 
@@ -145,11 +157,19 @@ public:
 	}
 	bool searchDoctorById(int id) {
 		Doctor* temp = head;
+		//if the Doctor was the first and only node in list
+		if (temp->id == id) {
+			return true;
+		}
 		while (temp->next != NULL) {
 			if (temp->id == id) {
 				return true;
 			}
 			temp = temp->next;
+		}
+		//check if Doctor in the last node
+		if (temp->id == id) {
+			return true;
 		}
 		return false;
 	}
@@ -180,7 +200,7 @@ public:
 };
 class Patient {
 public:
-	int id; //عاوز احسنه اخلي المستخدم ميدخلوش 
+	int id;
 	string name;
 	string address;
 	string appointment;
@@ -204,7 +224,7 @@ public:
 			return false;
 		}
 	}
-	void addPatient(int id, string name, string address, string appointment) { //insert from front later i will make insert from end
+	void addPatient(int id, string name, string address, string appointment) { 
 		Patient* newPatient = new Patient;
 		newPatient->id = id;
 		newPatient->name = name;
@@ -232,26 +252,46 @@ public:
 	}
 	bool searchPatientById(int id) {
 		Patient* temp = head;
+		//if the patient was the first and only node in list
+		if (temp->id == id) {
+			return true;
+		}
 		while (temp->next != NULL) {
 			if (temp->id == id) {
 				return true;
 			}
 			temp = temp->next;
 		}
+		//check if patient in the last node
+		if (temp->id == id) {
+			return true;
+		}
 		return false;
 	}
 	bool searchPatientByName(string name) {
 		Patient* temp = head;
+		//if the patient was the first and only node in list
+		if (temp->name == name) {
+			cout << "Patient was found"<<endl;
+			cout << "they id is:" << temp->id <<" " << "they address is:" << temp->address << " " << "they Appointment is:" << temp->appointment << endl;
+			return true;
+		}
+		
 		while (temp->next != NULL) {
 			if (temp->name == name) {
-				cout << "Patient was found";
-				cout << "they id is:" << temp->id << "they address is:" << temp->address << "they Appointment is:" << temp->appointment;
+				cout << "Patient was found" << endl;
+				cout << "they id is:" << temp->id << "they address is:" << temp->address << "they Appointment is:" << temp->appointment << endl;
 				return true;
 			}
 			temp = temp->next;
 		}
-		cout<< "Patient was not found";
+		//check if patient in the last node
+		if (temp->name == name) {
+			return true;
+		}
+		cout<< "Patient was not found" << endl;
 		return false;
+		
 	}
 	void removePatient(int id) {
 		if (searchPatientById(id)) {
@@ -277,11 +317,11 @@ public:
 	}
 	void bookAppointment(){}//مش عارف هنعلمها ازاي لسه 
 	void updatePatientInformation() {
-		cout << "enter Patient id for the Patient you want to update they information";
+		cout << "enter Patient id for the Patient you want to update they information" << endl;
 		int id;
 		cin >> id;
 		if (searchPatientById(id)) {
-			cout << "enter number the represent the information you want to update";
+			cout << "enter number the represent the information you want to update" << endl;
 			cout << "[1] to update id"<<endl;
 			cout << "[2] to update name" << endl;
 			cout << "[3] to update address" << endl;
@@ -298,28 +338,28 @@ public:
 			}
 			switch(operationId) {
 				case 1:{
-					cout << "enter the new id";
+					cout << "enter the new id" << endl;
 					int newId;
 					cin >> newId;
 					temp->id = newId;
 					break;
 				}
 				case 2:{
-					cout << "enter the new name";
+					cout << "enter the new name" << endl;
 					string newName;
 					cin >> newName;
 					temp->name = newName;
 					break;
 				}
 				case 3:{
-					cout << "enter the new address";
+					cout << "enter the new address" << endl;
 					string newAddress;
 					cin >> newAddress;
 					temp->address = newAddress;
 					break;
 				}
 				case 4:{
-					cout << "enter the new Appointment";
+					cout << "enter the new Appointment" << endl;
 					string newAppointment;
 					cin >> newAppointment;
 					temp->appointment = newAppointment;
@@ -330,13 +370,13 @@ public:
 					string newName;
 					string newAddress;
 					string newAppointment;
-					cout << "enter the new id";
+					cout << "enter the new id" << endl;
 					cin >> newId;
-					cout << "enter the new name";
+					cout << "enter the new name" << endl;
 					cin >> newName;
-					cout << "enter the new address";
+					cout << "enter the new address" << endl;
 					cin >> newAddress;
-					cout << "enter the new Appointment";
+					cout << "enter the new Appointment" << endl;
 					cin >> newAppointment;
 					temp->id = newId;
 					temp->name = newName;
@@ -345,7 +385,7 @@ public:
 					break;
 				}
 				default:{
-					cout << "enter valid number";
+					cout << "enter valid number" << endl;
 					break;
 				}
 			}
